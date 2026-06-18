@@ -1,0 +1,30 @@
+SOURCE_URL: https://talk.collegeconfidential.com/t/binghamton-computer-science-major/1081373
+SOURCE_TYPE: forum
+TITLE: Binghamton Computer Science Major (College Confidential discussion thread)
+DEPARTMENT: Computer Science, Binghamton University
+
+=== POST ===
+AUTHOR: swimstar2493
+DATE: 2011-04-03
+Hello, I am a potential incoming freshman into Binghamton in the fall. I was accepted into the computer science program at the watson school of engineering and sciences and i was wondering if anyone can give me any info on the difficulty of the course, professors, and anything else that can be useful about the program at binghamton.
+
+=== POST ===
+AUTHOR: Bonacspud
+DATE: 2011-04-03
+My son was too, hoping someone responds. I noticed in comparing colleges that he was accepted to, Binghamton has the most computer programs/majors, numbered in the 80's compared to some schools with only 20+ programs. I believe Bing has about 350 CS undergraduate students.
+
+=== POST ===
+AUTHOR: Bootes
+DATE: 2011-04-03
+I'm a senior CS major. I think the CS department is pretty good in general. Eileen Head (Undergraduate Program Director) is very helpful and you should definitely get to know her. A good thing about CS is that upper level courses have a class size limit and no CS courses are allowed to be taught by TAs.
+
+=== POST ===
+AUTHOR: Bootes
+DATE: 2011-04-03
+I guess that classes are difficult, but it's usually material I actually want to learn. I think that's really the most important thing to consider. I've taken a few English courses recently and the work/time commitment required by them is much less than CS courses. But I wouldn't be interested in taking most English courses, and it would be much more difficult to find a job if my degree was in English. You can always take CS110/140 (Intro Programming Courses) and see what you think of them. I don't feel that the classes get more difficult than those, you mainly just keep building at a similar pace from there.
+
+Professors to avoid: Foreman and Steflik. Foreman teaches a pass/fail required 2 credit course CS 101. You don't need to/can't avoid him there, but don't take him for a real 3/4 credit course like Operating Systems. Neither teaches anything in lecture and then often requires pretty difficult projects that you need to completely figure out how to do on your own. You then have no idea what to study for on the tests (because you haven't been learning anything in lecture).
+
+Professors I've liked: Garrison, Govindaraju (Madhu), Greene, Iwobi, Richard Eckert (seems to have retired), Kartik. Greene is difficult and doesn't come off as that friendly, but he teaches you a lot and I've heard he's very helpful in office hours if you need help. Garrison teaches 373 which is unlike any other course you'll take and I don't think anyone could teach it better than he does. He taught Algorithms this semester and I wish I had taken it with him.
+
+I highly suggest taking Calc 2 over the summer somewhere else. Maybe physics also if you decide to take it.

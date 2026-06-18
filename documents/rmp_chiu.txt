@@ -1,0 +1,46 @@
+SOURCE_URL: https://www.ratemyprofessors.com/professor/932699
+SOURCE_TYPE: ratemyprofessors
+PROFESSOR: Kenneth Chiu
+DEPARTMENT: Computer Science, Binghamton University
+
+PROFILE SUMMARY: Kenneth Chiu — overall rating 4.1/5 based on 27 ratings; 83% would take again; average difficulty 3.9/5. Teaches upper-level courses including deep learning / HPC (CS447), AI (CS440), and CS480-level electives.
+
+=== REVIEW ===
+COURSE: CS480E
+DATE: 2025-11-02
+QUALITY: 1.0/5
+DIFFICULTY: 5.0/5
+TAGS: Tough grader, Lecture heavy, Test heavy
+this class is sooooo hard bruh
+
+=== REVIEW ===
+COURSE: CS447
+DATE: 2025-05-23
+QUALITY: 3.0/5
+DIFFICULTY: 3.0/5
+TAGS: Hilarious, Graded by few things
+I also had Ken for deep learning. Despite being around longer, this class felt far more disorganized. I do well with organized lectures and this was unfortunately the opposite of that. Additionally, assignments were very inconsistently posted which made it difficult to know when we would have work. Overall, prob wouldn't take HPC again.
+
+=== REVIEW ===
+COURSE: CS480E
+DATE: 2024-12-22
+QUALITY: 5.0/5
+DIFFICULTY: 3.0/5
+TAGS: Hilarious, Graded by few things, Online Savvy
+We were graded only by attendance & 4 projects, all graded leniently. Professor Chiu keeps his lectures engaging & encourages participation. Projects are great for learning the material but are incredibly hard & time consuming. I wish they were smaller, as oftentimes we went months without applying the knowledge, which made retaining the info hard.
+
+=== REVIEW ===
+COURSE: CS480F
+DATE: 2024-12-14
+QUALITY: 2.0/5
+DIFFICULTY: 3.0/5
+TAGS: Test heavy
+An alright professor that can get you by content-wise, lectures are particularly stale and require a level of self investment.
+
+=== REVIEW ===
+COURSE: CS440
+DATE: 2023-12-09
+QUALITY: 5.0/5
+DIFFICULTY: 3.0/5
+TAGS: Clear grading criteria, Respected, Graded by few things
+Legend. Effective teacher. Grading breakdown is 47% 1-2 tests, 47% 3-4 programming assignments, 6% participation (+attendance) which is amazing imo. Quick responses on Piazza.

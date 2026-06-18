@@ -1,0 +1,44 @@
+SOURCE_URL: https://www.ratemyprofessors.com/professor/1549122
+SOURCE_TYPE: ratemyprofessors
+PROFESSOR: George Weinschenk
+DEPARTMENT: Computer Science, Binghamton University
+
+PROFILE SUMMARY: George Weinschenk — overall rating 3.0/5 based on 179 ratings; 32% would take again; average difficulty 3.2/5. Frequently teaches CS101.
+
+=== REVIEW ===
+COURSE: CS101
+DATE: 2026-03-18
+QUALITY: 2.0/5
+DIFFICULTY: 1.0/5
+TAGS: EXTRA CREDIT, Lecture heavy, Graded by few things
+CS101 is an easy A but incredibly boring. Due to my section being at 7PM, I was very tired by the end of the lecture. Most of the lectures are done by guest speakers, with only a few actually being given by the professor. There is no reason to pay attention unless you are particularly interested in the guest speaker presentation.
+
+=== REVIEW ===
+COURSE: CS101
+DATE: 2026-01-27
+QUALITY: 2.0/5
+DIFFICULTY: 1.0/5
+TAGS: Lecture heavy
+The most fatiguing class to sit through even though it's an easy A. Most lectures are filled with guest speakers in the computer science field, but can feel really boring since it's an evening class. Attendance is mandatory for passing the class and doing well—on top of him taking attendance at the start and end of each class.
+
+=== REVIEW ===
+COURSE: CS301
+DATE: 2026-01-26
+QUALITY: 1.0/5
+DIFFICULTY: 5.0/5
+TAGS: Tough grader, Get ready to read, Lots of homework
+A little late on writing this review but he is not a great professor. I assume they couldn't find another professor who wanted to teach this course which is why we all ended up with George. So much homework, focus is on grammar, not on CS.
+
+=== REVIEW ===
+COURSE: CS101
+DATE: 2026-01-23
+QUALITY: 1.0/5
+DIFFICULTY: 1.0/5
+this was a very very boring lecture that unfortunately all cs students will have to sit through. it felt more like a prison than a class and i learned nothing the whole semester. a waste of time.
+
+=== REVIEW ===
+COURSE: CS101
+DATE: 2025-12-12
+QUALITY: 2.0/5
+DIFFICULTY: 1.0/5
+CS101 is a drag and Weinschenk doesn't alleviate you from that reality.

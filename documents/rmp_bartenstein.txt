@@ -1,0 +1,45 @@
+SOURCE_URL: https://www.ratemyprofessors.com/professor/1789308
+SOURCE_TYPE: ratemyprofessors
+PROFESSOR: Thomas Bartenstein
+DEPARTMENT: Computer Science, Binghamton University
+
+PROFILE SUMMARY: Thomas Bartenstein — overall rating 2.7/5; 40% would take again; average difficulty 3.8/5.
+
+=== REVIEW ===
+COURSE: CS220
+DATE: 2025-12-20
+QUALITY: 4.0/5
+DIFFICULTY: 4.0/5
+TAGS: Beware of pop quizzes, Lecture heavy, Graded by few things
+Professor Bartenstein is such a sweet chill guy but I definitely see where his rmp ratings come from. His lectures can be a boring and tests are difficult. Make sure to compare homework assignments with other people because you can lose a lot of points there. Pop quizzes are random to check for attendance. The projects get increasingly difficult.
+
+=== REVIEW ===
+COURSE: CS220
+DATE: 2025-10-19
+QUALITY: 1.0/5
+DIFFICULTY: 5.0/5
+TAGS: Beware of pop quizzes
+Extremely monotone and boring lectures, he mostly reads off the slides, so it's impossible to understand what's important or not. Pop quizzes are memorization-based, so it's hard to do well. He's slightly passive-aggressive when you ask questions via email, so it's hard to approach him. His exams are difficult and will tank your grade. Avoid him.
+
+=== REVIEW ===
+COURSE: CS220
+DATE: 2025-09-16
+QUALITY: 4.0/5
+DIFFICULTY: 3.0/5
+TAGS: Beware of pop quizzes, Test heavy
+I took 220 in my sophomore year. His famous bomb project is quite entertaining if you had good TA, and makefile learnt in this class will be used in 310 and other higher level courses. Be prepared for pop quizzes (though they don't take much of the grades), and read syllabus closely as there's bonus question sometimes.
+
+=== REVIEW ===
+COURSE: CS320
+DATE: 2025-06-10
+QUALITY: 2.0/5
+DIFFICULTY: 3.0/5
+He's okay for 220, but isn't as good for this class. The class felt disorganized, and it seemed like the professor wasn't as well-versed in the material as he should be, which made it more difficult to learn. Example: there were no HW assignments between the first and second tests, which made it difficult to prepare for questions on the second test.
+
+=== REVIEW ===
+COURSE: CS220
+DATE: 2024-12-11
+QUALITY: 3.0/5
+DIFFICULTY: 3.0/5
+TAGS: Participation matters, Beware of pop quizzes, Lecture heavy
+If you have to take him he's really not that bad. Lectures can be boring but just listen to what he says. Tests have gotten much easier over the years. Very accessible outside of class and very kind but not the best at clearing up confusing topics. Slides are very detailed for self-studying but attendance is mandatory because of pop quizzes.

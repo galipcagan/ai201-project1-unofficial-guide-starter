@@ -1,0 +1,46 @@
+SOURCE_URL: https://www.ratemyprofessors.com/professor/2630145
+SOURCE_TYPE: ratemyprofessors
+PROFESSOR: Sujoy Sikdar
+DEPARTMENT: Computer Science, Binghamton University
+
+PROFILE SUMMARY: Sujoy Sikdar — overall rating 2.1/5 based on 16 ratings; 25% would take again; average difficulty 3.8/5. Teaches Machine Learning (CS436) and Algorithms (CS575).
+
+=== REVIEW ===
+COURSE: CS436
+DATE: 2026-04-05
+QUALITY: 1.0/5
+DIFFICULTY: 5.0/5
+TAGS: Tough grader, Beware of pop quizzes
+Possibly the worst class I've taken in all 4 years here. Terribly long and difficult hws, pop quizzes nearly everyday that has questions scattered across the entire lecture, and not even gonna mention exams. Incredibly difficult to follow lecture material. Grades harshly. Avoid at all costs.
+
+=== REVIEW ===
+COURSE: CS575
+DATE: 2026-02-25
+QUALITY: 1.0/5
+DIFFICULTY: 5.0/5
+TAGS: Tough grader, Participation matters, Beware of pop quizzes
+Poor pedagogy, real world implementation not taken into account, lecture is more of mathematical jargon but exam is of analytical implementation. Be aware of expecting stark difference in lecture & exams questions. If have prerequisite of ML take on own risk otherwise strictly avoid. Any free YouTube playlist is mush better than taking this course.
+
+=== REVIEW ===
+COURSE: CS575
+DATE: 2024-05-17
+QUALITY: 3.0/5
+DIFFICULTY: 3.0/5
+TAGS: Extra credit, Clear grading criteria, Lots of homework
+He's a relatively new professor so his lectures are a bit unpolished. He tries his level best to make sure the students get the basics of algorithms right. Although the focus on mathematical proofs is a bit too much in this class I guess it may help in developing a better understanding of the algorithms!
+
+=== REVIEW ===
+COURSE: CS436
+DATE: 2024-01-05
+QUALITY: 2.0/5
+DIFFICULTY: 3.0/5
+TAGS: Extra credit, Accessible outside class
+I was able to resubmit an unfinished assignment after finals which saved my grade. Very accessible outside of class, but he definitely needs to reformat how the material is taught because it was very hard to follow and understand unless you're laser-focused at each lecture.
+
+=== REVIEW ===
+COURSE: CS436
+DATE: 2023-10-13
+QUALITY: 1.0/5
+DIFFICULTY: 5.0/5
+TAGS: Get ready to read, Group projects, Lecture heavy
+Jumps around between lecture slides, very difficult to follow and zero coherence. HWs are assigned erratically and can be assigned even a week before they are due, with each HW being very difficult. Attendance is mandatory, with proof that you were in class (no sign-in sheet, you must upload and send in your notes). ZERO respect for the student.

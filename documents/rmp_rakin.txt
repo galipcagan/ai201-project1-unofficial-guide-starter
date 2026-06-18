@@ -1,0 +1,46 @@
+SOURCE_URL: https://www.ratemyprofessors.com/professor/2905662
+SOURCE_TYPE: ratemyprofessors
+PROFESSOR: Adnan Rakin
+DEPARTMENT: Computer Science, Binghamton University
+
+PROFILE SUMMARY: Adnan Rakin — overall rating 4.4/5 based on 9 ratings; 89% would take again; average difficulty 3.2/5. Teaches Machine Learning (CS436).
+
+=== REVIEW ===
+COURSE: CS436
+DATE: 2025-12-11
+QUALITY: 5.0/5
+DIFFICULTY: 4.0/5
+TAGS: Group projects, Amazing lectures, Clear grading criteria
+one of the best CS professors at Bing imo, hes the goat. exams felt hard (questions weren't always structured in a way that was done in class) but were graded fairly and hes willing to help during them. he cares about us understanding the material and hes an enthusiastic lecturer. overall good class, actually feel like i learned a lot.
+
+=== REVIEW ===
+COURSE: CS436
+DATE: 2025-02-05
+QUALITY: 5.0/5
+DIFFICULTY: 3.0/5
+TAGS: Amazing lectures, Respected, Accessible outside class
+The professor is very down-to-earth and highly knowledgeable in machine learning. They make the subject easier to understand with regular quizzes and reduce stress by offering extra credit, focusing on genuine learning rather than memorization. Highly recommended you will see the difference.
+
+=== REVIEW ===
+COURSE: CS436
+DATE: 2025-02-03
+QUALITY: 5.0/5
+DIFFICULTY: 3.0/5
+TAGS: Group projects, Amazing lectures, Gives good feedback
+Professor Adnan Rakin is an exceptional instructor. Their Machine Learning class was one of the best I've taken, with clear and engaging explanations that made complex topics easy to understand. Their passion and teaching style set them apart, and I now appreciate their approach even more after taking other CS courses. Highly recommended!
+
+=== REVIEW ===
+COURSE: CS436
+DATE: 2025-01-23
+QUALITY: 5.0/5
+DIFFICULTY: 4.0/5
+TAGS: Extra credit, Lots of homework, Accessible outside class
+He is an Amazing Professor, really made the concepts easy to understand. The exams were very easy. But Beware! there are lots of assignments for you. Attending his office hours would be very beneficial for you during his classes.
+
+=== REVIEW ===
+COURSE: CS220
+DATE: 2024-06-05
+QUALITY: 5.0/5
+DIFFICULTY: 3.0/5
+TAGS: Clear grading criteria, Lecture heavy, Accessible outside class
+he is a very good professor.

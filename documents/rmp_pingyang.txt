@@ -1,0 +1,45 @@
+SOURCE_URL: https://www.ratemyprofessors.com/professor/1114773
+SOURCE_TYPE: ratemyprofessors
+PROFESSOR: Ping Yang
+DEPARTMENT: Computer Science, Binghamton University
+
+PROFILE SUMMARY: Ping Yang — overall rating 4.7/5 based on 17 ratings; 75% would take again; average difficulty 2.4/5.
+
+=== REVIEW ===
+COURSE: CS558
+DATE: 2024-12-17
+QUALITY: 5.0/5
+DIFFICULTY: 2.0/5
+Prof. Yang is awesome! Her slides are very nicely made, and I appreciate that she uploads pre-recorded videos where she goes through lectures again. Each lecture is explained masterfully, and the assignments are very manageable. She gives lots of extra credit and is accessible outside of class. It's clear she knows her stuff and wants us to succeed.
+
+=== REVIEW ===
+COURSE: CS558
+DATE: 2024-03-26
+QUALITY: 5.0/5
+DIFFICULTY: 3.0/5
+TAGS: EXTRA CREDIT, Group projects, Amazing lectures
+Professor Yang is nice and caring. The lectures are well delivered and there are also recordings to watch. Exams are fair, there are no tricky questions and you can definitely get a good score after practice.
+
+=== REVIEW ===
+COURSE: CS558
+DATE: 2022-11-08
+QUALITY: 5.0/5
+DIFFICULTY: 3.0/5
+TAGS: Respected
+Easy grade.
+
+=== REVIEW ===
+COURSE: CS571
+DATE: 2020-05-26
+QUALITY: 5.0/5
+DIFFICULTY: 4.0/5
+TAGS: Respected, Clear grading criteria, Amazing lectures
+Prof. Yang for CS 571 - Programming Languages is calm and inspirational. Her grading criteria is very transparent. All her lectures are delivered at a slow pace and might sometimes bore you, but is beneficial in terms of understanding basic concepts well. Many Programming languages are covered over the course along with assignments.
+
+=== REVIEW ===
+COURSE: CS571
+DATE: 2019-04-18
+QUALITY: 5.0/5
+DIFFICULTY: 3.0/5
+TAGS: Gives good feedback, Respected, Amazing lectures
+Lectures are very clear. Slides are good. Learned many different programming languages. Tests are not hard if you spent time working on the assignment and studying for the exam.

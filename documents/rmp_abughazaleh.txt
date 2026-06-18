@@ -1,0 +1,46 @@
+SOURCE_URL: https://www.ratemyprofessors.com/professor/152851
+SOURCE_TYPE: ratemyprofessors
+PROFESSOR: Nael Abu-Ghazaleh
+DEPARTMENT: Computer Science, Binghamton University
+
+PROFILE SUMMARY: Nael Abu-Ghazaleh — overall rating 4.6/5 based on 34 ratings; average difficulty 3.3/5.
+
+=== REVIEW ===
+COURSE: CS202
+DATE: 2016-03-10
+QUALITY: 5.0/5
+DIFFICULTY: 4.0/5
+TAGS: For Credit: Yes, Attendance: Not Mandatory, Textbook: No
+He's super-helpful and he knows his field really well, but his content usually requires a strong background in the course he's taking. Be prepared to work really hard and learn a lot! i wont recommend taking his class if you aren't REALLY interested/dont have knowledge of systems. If you do, no one can do a better job at it.
+
+=== REVIEW ===
+COURSE: CS220
+DATE: 2014-05-14
+QUALITY: 5.0/5
+DIFFICULTY: 3.0/5
+TAGS: Attendance: Mandatory, Grade: A, Textbook: Yes
+Nael is one of my favorite professors i've had at BU so far. Going to lecture helps a lot. Also do not be afraid to go to his office hours, he provides incredible help for the labs without giving away the answer. This class is the most informative CS course i've taken, and I finished the semester with a firm grasp of programming finally.
+
+=== REVIEW ===
+COURSE: CS220
+DATE: 2014-01-03
+QUALITY: 5.0/5
+DIFFICULTY: 2.0/5
+TAGS: Attendance: Mandatory, Grade: A, Textbook: Yes
+Nael is an excellent professor. He knows his stuff, and is very detailed in his explanations. He is more than willing to dial back the time schedule if the class is struggling. Start the assignments on time and don't be afraid of a challenge. 220 is an excellent course and Nael teaches it very well. If you're scared, don't be. It's not bad.
+
+=== REVIEW ===
+COURSE: CS220
+DATE: 2013-12-18
+QUALITY: 5.0/5
+DIFFICULTY: 4.0/5
+TAGS: Textbook: Yes
+This is one of the best professors for computer science. The class is hard but one of the most fair classes, if you work you get good grades and he's always there to help.
+
+=== REVIEW ===
+COURSE: CS (general)
+DATE: 2013-01-04
+QUALITY: 4.5/5
+DIFFICULTY: 5.0/5
+TAGS: Textbook: No
+RECOMMENDED. Learned a lot from him. Labs can get difficult but very interesting and satisfying when completing. Lectures are important when going over complex ideas. Office hours are very helpful when you seek help. Very responsive to emails and questions as well.

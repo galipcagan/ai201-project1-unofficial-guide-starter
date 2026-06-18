@@ -1,0 +1,46 @@
+SOURCE_URL: https://www.ratemyprofessors.com/professor/140813
+SOURCE_TYPE: ratemyprofessors
+PROFESSOR: Patrick Madden
+DEPARTMENT: Computer Science, Binghamton University
+
+PROFILE SUMMARY: Patrick Madden — overall rating 4.2/5 based on 64 ratings; 85% would take again; average difficulty 2.3/5.
+
+=== REVIEW ===
+COURSE: CS441
+DATE: 2024-11-14
+QUALITY: 5.0/5
+DIFFICULTY: 1.0/5
+TAGS: Accessible outside class, Helpful
+If you have the option to take a class with him, take it. He grades easily, and there are no surprises on tests and assignments.
+
+=== REVIEW ===
+COURSE: CS375
+DATE: 2024-10-29
+QUALITY: 5.0/5
+DIFFICULTY: 3.0/5
+TAGS: Amazing lectures, Clear grading criteria, Hilarious
+Professor Madden sets the standard! His lectures are clear, easy to follow, and all recorded for your reference. His tests are very fair, and if you pay attention in class and use the study guide, you'll be set up for success. He genuinely wants his students to succeed!
+
+=== REVIEW ===
+COURSE: CS120
+DATE: 2024-01-17
+QUALITY: 4.0/5
+DIFFICULTY: 4.0/5
+TAGS: Tough grader, Test heavy, Graded by few things
+The exams are pretty hard and you aren't exactly prepared well for them. He is a fun guy, but he really just reads the slides. To be fair, the course is basically EE with minimal C coding, so it's already very hard to grasp. Best advice is to earn most points from homework and lab which are relatively mediocre, and try your best on exams.
+
+=== REVIEW ===
+COURSE: CS120
+DATE: 2023-05-24
+QUALITY: 5.0/5
+DIFFICULTY: 2.0/5
+TAGS: Amazing lectures, Hilarious, Graded by few things
+Overall great professor. Talked with me when I needed help. Had a great sense of humor. Great teacher of relatively complex ideas.
+
+=== REVIEW ===
+COURSE: CS120
+DATE: 2023-05-15
+QUALITY: 4.0/5
+DIFFICULTY: 2.0/5
+TAGS: Amazing lectures, Clear grading criteria
+Madden is great, but not amazing. He explains things very well for the most part, and is super caring and helpful. He really wants his students to succeed. The reason I give him a 4/5 is because he spends too much time on easy topics, and too little time on difficult topics. Kinda strange. Overall, I definitely recommend him.

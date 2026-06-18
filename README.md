@@ -9,10 +9,9 @@
 
 ## Domain
 
-<!-- What topic or category of knowledge does your system cover?
-     Why is this knowledge valuable, and why is it hard to find through official channels?
-     Example: "Student reviews of CS professors at [university] — useful because official
-     course descriptions don't reflect teaching style, exam difficulty, or workload." -->
+**Student reviews of Computer Science professors at Binghamton University (SUNY).**
+
+This system answers questions about CS professors and courses at Binghamton — teaching style, exam difficulty, workload, grading fairness, and which professors or sections to take versus avoid. It's valuable because official channels don't carry this: the course catalog and faculty pages list titles, prerequisites, and research interests, but never that one professor reads monotone off slides while another records every lecture and curves fairly. That signal is scattered across hundreds of short, unstructured Rate My Professors and Coursicle reviews and Reddit threads — anecdotal, inconsistent, and tedious to aggregate by hand.
 
 ---
 
@@ -24,16 +23,21 @@
 
 | # | Source | Type | URL or file path |
 |---|--------|------|-----------------|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
-| 6 | | | |
-| 7 | | | |
-| 8 | | | |
-| 9 | | | |
-| 10 | | | |
+| 1 | Rate My Professors — Binghamton school page | School-level reviews | https://www.ratemyprofessors.com/school/958 |
+| 2 | Rate My Professors — Binghamton CS professor listing | Professor index | https://www.ratemyprofessors.com/search/professors/958?q=*&did=11 |
+| 3 | Rate My Professors — Patrick Madden | Individual professor reviews | https://www.ratemyprofessors.com/professor/140813 |
+| 4 | Rate My Professors — Thomas Bartenstein | Individual professor reviews | https://www.ratemyprofessors.com/professor/1789308 |
+| 5 | Rate My Professors — Nael Abu-Ghazaleh | Individual professor reviews | https://www.ratemyprofessors.com/professor/152851 |
+| 6 | Rate My Professors — Ping Yang | Individual professor reviews | https://www.ratemyprofessors.com/professor/1114773 |
+| 7 | Rate My Professors — Mike Lewis | Individual professor reviews | https://www.ratemyprofessors.com/professor/166445 |
+| 8 | Rate My Professors — Adnan Rakin | Individual professor reviews | https://www.ratemyprofessors.com/professor/2905662 |
+| 9 | Coursicle — CS 220 | Course-level reviews | https://www.coursicle.com/binghamton/courses/CS/220/ |
+| 10 | Coursicle — CS 320 | Course-level reviews | https://www.coursicle.com/binghamton/courses/CS/320/ |
+| 11 | Coursicle — CS 350 | Course-level reviews | https://www.coursicle.com/binghamton/courses/CS/350/ |
+| 12 | Coursicle — CS 471 | Course-level reviews | https://www.coursicle.com/binghamton/courses/CS/471/ |
+| 13 | Coursicle — Thomas Bartenstein professor page | Per-professor aggregation | https://www.coursicle.com/binghamton/professors/Thomas+Bartenstein/ |
+| 14 | College Confidential — "Binghamton Computer Science Major" | Discussion thread | https://talk.collegeconfidential.com/t/binghamton-computer-science-major/1081373 |
+| 15 | Quora — "Is CS at Binghamton challenging?" | Q&A thread | https://www.quora.com/Is-computer-science-in-Binghamton-university-challenging |
 
 ---
 
@@ -46,13 +50,16 @@
      - Any preprocessing you did before chunking (e.g., stripping HTML, removing headers)
      - What your final chunk count was across all documents -->
 
-**Chunk size:**
+**Chunk size:** 512 characters maximum per chunk (≈ 110–130 tokens).
 
-**Overlap:**
+**Overlap:** 50 characters, applied **only** when a single record is longer than 512 characters and must be split.
 
 **Why these choices fit your documents:**
+The corpus is *review-aware, mixed-granularity*. Most RateMyProfessors entries are short, self-contained reviews (the mean chunk is 354 chars; min 87, max 511), so the ingestion pipeline ([ingest.py](ingest.py)) treats **one review as one atomic chunk** and never splits it — splitting a short review would orphan the opinion ("avoid him") from the professor and course it refers to. Each review chunk is given a context prefix (`Professor X — COURSE (RateMyProfessors review, date). Student rating: quality, difficulty.`) so it is interpretable standalone even when the review text itself doesn't repeat the professor's name. The aggregate stats line for each professor becomes its own `profile_summary` chunk. Only the long-form College Confidential forum posts exceed 512 chars; those are split with 50-char overlap so a sentence spanning a boundary isn't lost. The 512 cap is also bounded by the embedding model (`all-MiniLM-L6-v2` truncates at 256 tokens), guaranteeing no silent truncation.
 
-**Final chunk count:**
+**Preprocessing before chunking:** `clean_text()` decodes HTML entities (`&amp;`, `&#39;`, `&nbsp;`), strips any HTML tags, drops known page boilerplate (Helpful / Report / Share / "Read more" / "N helpful"), and collapses redundant blank lines. (Because sources were captured as text, the HTML path is mostly a safety net for any pages later saved as raw `.html`.)
+
+**Final chunk count:** **67 chunks** across 11 source documents (10 RateMyProfessors professor pages + 1 College Confidential thread). This sits comfortably inside the healthy 50–2,000 range; 4 of the 67 are split pieces of long forum posts.
 
 ---
 
@@ -62,13 +69,38 @@
      For each chunk, note which source document it came from.
      These must be actual text — not screenshots. -->
 
-| # | Source document | Chunk text |
-|---|----------------|------------|
-| 1 | | |
-| 2 | | |
-| 3 | | |
-| 4 | | |
-| 5 | | |
+These are actual chunks emitted by [ingest.py](ingest.py) (and stored in `chunks.json`). Each is a complete, retrievable thought — the context prefix keeps it interpretable on its own.
+
+**Chunk 1** — source: `documents/rmp_madden.txt` (review, CS375, 391 chars)
+```
+Professor Patrick Madden — CS375 (RateMyProfessors review, 2024-10-29). Student rating: quality 5.0/5, difficulty 3.0/5.
+Professor Madden sets the standard! His lectures are clear, easy to follow, and all recorded for your reference. His tests are very fair, and if you pay attention in class and use the study guide, you'll be set up for success. He genuinely wants his students to succeed!
+```
+
+**Chunk 2** — source: `documents/rmp_bartenstein.txt` (review, CS220, 473 chars)
+```
+Professor Thomas Bartenstein — CS220 (RateMyProfessors review, 2025-10-19). Student rating: quality 1.0/5, difficulty 5.0/5.
+Extremely monotone and boring lectures, he mostly reads off the slides, so it's impossible to understand what's important or not. Pop quizzes are memorization-based, so it's hard to do well. He's slightly passive-aggressive when you ask questions via email, so it's hard to approach him. His exams are difficult and will tank your grade. Avoid him.
+```
+
+**Chunk 3** — source: `documents/rmp_weinschenk.txt` (profile_summary, 136 chars)
+```
+George Weinschenk — overall rating 3.0/5 based on 179 ratings; 32% would take again; average difficulty 3.2/5. Frequently teaches CS101.
+```
+
+**Chunk 4** — source: `documents/rmp_sikdar.txt` (review, CS436, 411 chars)
+```
+Professor Sujoy Sikdar — CS436 (RateMyProfessors review, 2026-04-05). Student rating: quality 1.0/5, difficulty 5.0/5.
+Possibly the worst class I've taken in all 4 years here. Terribly long and difficult hws, pop quizzes nearly everyday that has questions scattered across the entire lecture, and not even gonna mention exams. Incredibly difficult to follow lecture material. Grades harshly. Avoid at all costs.
+```
+
+**Chunk 5** — source: `documents/forum_collegeconfidential_cs_major.txt` (forum_post, part 2/4, 509 chars)
+```
+b if my degree was in English. You can always take CS110/140 (Intro Programming Courses) and see what you think of them. I don't feel that the classes get more difficult than those, you mainly just keep building at a similar pace from there.
+
+Professors to avoid: Foreman and Steflik. Foreman teaches a pass/fail required 2 credit course CS 101. You don't need to/can't avoid him there, but don't take him for a real 3/4 credit course like Operating Systems. Neither teaches anything in lecture and then often
+```
+> *Note on Chunk 5:* this is one piece of a long forum post that was split. The leading fragment "b if my degree was in English. You can always take" is the **50-character overlap** carried over from the previous chunk (part 1/4) — included deliberately so the split doesn't sever the sentence about intro courses. This is the one place where a chunk isn't perfectly clean on its own; for short reviews (Chunks 1–4) no splitting occurs, so they read as complete standalone thoughts.
 
 ---
 

@@ -1,0 +1,46 @@
+SOURCE_URL: https://www.ratemyprofessors.com/professor/166445
+SOURCE_TYPE: ratemyprofessors
+PROFESSOR: Mike Lewis
+DEPARTMENT: Computer Science, Binghamton University
+
+PROFILE SUMMARY: Mike Lewis — overall rating 4.0/5; 76% would take again; average difficulty 3.2/5. Department chair.
+
+=== REVIEW ===
+COURSE: CS310
+DATE: 2026-05-23
+QUALITY: 4.0/5
+DIFFICULTY: 3.0/5
+TAGS: Group projects, Respected, Lecture heavy
+Exams were more tests of your english comprehension skills than of the actual content. Lectures are somewhat helpful and his teaching is okay, nothing super outstanding imo. Coding Projects and quizzes were light even without AI.
+
+=== REVIEW ===
+COURSE: CS310
+DATE: 2025-12-12
+QUALITY: 5.0/5
+DIFFICULTY: 2.0/5
+TAGS: Participation matters, Group projects, Amazing lectures
+Breaks down the material and makes it easy to understand. Has a sense of humor, so class isn't always boring. He is the head of the CS department, so he knows the subject really well, but he is also extremely busy.
+
+=== REVIEW ===
+COURSE: CS350
+DATE: 2025-02-06
+QUALITY: 5.0/5
+DIFFICULTY: 4.0/5
+TAGS: Group projects, Inspirational, Caring
+Prof. Lewis is amazing!! Exams and projects are relatively difficult, but he makes up for that by curving at the end (depending on how bad overall scores are) and giving extra time for projects. Aside from that, he's a really caring professor and puts his students first.
+
+=== REVIEW ===
+COURSE: CS350
+DATE: 2024-08-21
+QUALITY: 4.0/5
+DIFFICULTY: 3.0/5
+TAGS: Caring, Lecture heavy, Graded by few things
+The course is 310, but he was solid. Projects are a HUGE part of your grade, so start them early and don't underestimate them. Use your TA/CA on projects and do decently well on the quizzes/exams, and you shouldn't have a problem getting a good grade.
+
+=== REVIEW ===
+COURSE: CS240
+DATE: 2023-12-16
+QUALITY: 5.0/5
+DIFFICULTY: 3.0/5
+TAGS: Amazing lectures, Caring, Respected
+Lewis is the single most qualified teacher in this department. He only needed a board and markers (a prof. who doesn't depend on slides?). Lewis ensured all concepts and material were covered to only the extent we needed to know, and his explanations were incredibly solid.

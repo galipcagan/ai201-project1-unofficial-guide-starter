@@ -1,0 +1,46 @@
+SOURCE_URL: https://www.ratemyprofessors.com/professor/165185
+SOURCE_TYPE: ratemyprofessors
+PROFESSOR: Leslie Lander
+DEPARTMENT: Computer Science, Binghamton University
+
+PROFILE SUMMARY: Leslie Lander — overall rating 3.7/5 based on 58 ratings; 71% would take again; average difficulty 2.3/5. Teaches design patterns (CS442/CS542); coordinates the 4+1 program.
+
+=== REVIEW ===
+COURSE: 4+1 program advising
+DATE: 2025-08-31
+QUALITY: 1.0/5
+DIFFICULTY: 2.0/5
+TAGS: Tough grader, Participation matters, Group projects
+I didn't take this professor in a class but delt with him when entering the 4+1 program. It was extremely frustrating to deal with him. He would take weeks to reply and then repeat the same things we had talked about a day earlier. Long story short I had to have someone else help me even though he is the program coordinator. Extremely frustrating.
+
+=== REVIEW ===
+COURSE: CS442
+DATE: 2024-12-19
+QUALITY: 4.0/5
+DIFFICULTY: 1.0/5
+TAGS: Group projects, Accessible outside class
+Prof. Lander is chill and makes the course easy, with straightforward assignments and exams that mostly involve following instructions. However, the class felt too simple, so I had to self-teach a lot of the course as I wanted to learn more about design patterns. It's a good option if you want a light workload and more time for other activities.
+
+=== REVIEW ===
+COURSE: CS442
+DATE: 2024-09-04
+QUALITY: 5.0/5
+DIFFICULTY: 1.0/5
+TAGS: Clear grading criteria, Caring, Respected
+The course was straightforward and easy to earn an A. Lectures can be dull, but the assignments and tests mainly require following instructions, though they are interesting. The professor is kind and helpful. The TA was excellent, ensuring everyone understood the assignments, making announcements, and taking assignment demos. He was very helpful.
+
+=== REVIEW ===
+COURSE: CS542
+DATE: 2024-08-24
+QUALITY: 4.0/5
+DIFFICULTY: 1.0/5
+TAGS: Clear grading criteria, Lecture heavy, Accessible outside class
+It is unironically harder to fail the course than to get an A. Lectures are pretty dry at times, but assignments and tests boil down to 'can you follow simple instructions?' That being said, you can learn this entire course in a few hours through Scott Bain's PMI lectures, so only do this class in the summer or for an A. He's a great guy though!
+
+=== REVIEW ===
+COURSE: CS442
+DATE: 2024-05-15
+QUALITY: 5.0/5
+DIFFICULTY: 1.0/5
+TAGS: Group projects, Caring, Accessible outside class
+This class is incredibly easy, and Lander is extremely nice, but you won't learn a thing. Lectures are comprised of him following the textbook and writing code, but the assignments/quizzes/tests are so straightforward you don't use the concepts learned at all. Take this class only if you're looking for an easy A/free elective.
