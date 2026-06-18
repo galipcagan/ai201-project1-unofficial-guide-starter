@@ -168,9 +168,25 @@ Relevance explanation: Partially relevant. The query has two intents — *highes
      Do not just say "I told it to use the documents" — show the actual instruction or explain
      the mechanism. -->
 
-**System prompt grounding instruction:**
+Grounding is enforced in [query.py](query.py) **three ways**, so it doesn't depend on the LLM cooperating:
 
-**How source attribution is surfaced in the response:**
+1. **Structural relevance gate (before the LLM):** retrieved chunks with cosine distance > `0.60` are dropped. If *no* chunk clears the gate, `ask()` returns the refusal string immediately and **never calls the LLM** — so an out-of-scope question physically cannot be answered from training data.
+2. **System prompt:** strict instructions (below).
+3. **Programmatic attribution:** the `sources` list is built from the metadata of the chunks actually passed in — never invented by the model. Generation also runs at `temperature=0.0` to minimize drift from the context.
+
+**System prompt grounding instruction:** (verbatim, abbreviated)
+```
+You answer questions using ONLY the student-review excerpts provided in the CONTEXT block.
+1. Use ONLY information found in the CONTEXT. Do NOT use any outside or general knowledge,
+   and do NOT guess or infer beyond what the excerpts say.
+2. If the CONTEXT does not contain enough information to answer the question, reply with
+   EXACTLY this sentence and nothing else: "I don't have enough information on that."
+3. Cite the excerpts you used by their bracket number, e.g. [1], [3], after the claim they support.
+4. When reviews disagree, report the disagreement rather than picking one side.
+```
+The retrieved chunks are injected as a numbered `CONTEXT:` block (`[1] (source: rmp_madden.txt) ...`), each labeled with its source filename, so the `[n]` citations map back to specific documents.
+
+**How source attribution is surfaced in the response:** After generation, `ask()` returns a `sources` list built programmatically by de-duplicating the `source_file` + `source_url` metadata of every chunk that passed the relevance gate (see `_source_list()`). The UI shows these under a **"Retrieved from"** label. Because attribution comes from retrieval metadata rather than the model's text, the answer can never cite a document that wasn't actually retrieved. (Trade-off: "Retrieved from" lists everything passed as context, which can include a chunk the answer didn't end up citing.)
 
 ---
 
@@ -182,29 +198,35 @@ Relevance explanation: Partially relevant. The query has two intents — *highes
 
 **Grounded response 1**
 
-Query:
+Query: *What do students say about Patrick Madden's lectures and exams?*
 
-Response:
+Response: "Students say that Professor Madden's lectures are clear, easy to follow, and all recorded for reference [1]. However, one student notes that he 'really just reads the slides' [5]. Regarding exams, some reviewers say they are 'very fair' and that if you pay attention in class and use the study guide, you'll be set up for success [1], while others say they are 'pretty hard' and you aren't exactly prepared well for them [5]. Additionally, one student mentions that there are 'no surprises on tests and assignments' [2]."
 
-Source attribution:
+Source attribution: rmp_madden.txt (https://www.ratemyprofessors.com/professor/140813)
+
+*Grounding check:* every clause is traceable to a retrieved Madden chunk, including the genuine disagreement about exam difficulty — nothing came from general knowledge.
 
 ---
 
 **Grounded response 2**
 
-Query:
+Query: *Is Thomas Bartenstein a good professor to take for CS 220?*
 
-Response:
+Response: "Some reviewers say Professor Thomas Bartenstein is 'really not that bad' for CS220 [1], and that he's a 'sweet chill guy' [4], while others have more mixed opinions, with one reviewer giving him a 4.0/5 quality rating [4] and another a 3.0/5 [1]. However, his lectures can be boring [1], [4], and tests can be difficult [4]. Overall, it seems that he can be a decent professor for CS220, but students should be prepared for potential challenges [1], [4], [5]."
 
-Source attribution:
+Source attribution: rmp_bartenstein.txt (https://www.ratemyprofessors.com/professor/1789308), rmp_rakin.txt (https://www.ratemyprofessors.com/professor/2905662)
+
+*Grounding check:* the answer reflects the spread of Bartenstein reviews. `rmp_rakin.txt` is listed because one Rakin chunk (distance 0.378) cleared the relevance gate and was included as context — the model did not actually cite it, which exposes the "Retrieved from lists everything passed in" trade-off noted above.
 
 ---
 
 **Out-of-scope query**
 
-Query:
+Query: *What are the best off-campus apartments near Binghamton?*
 
-System response (refusal):
+System response (refusal): "I don't have enough information on that."
+
+*Mechanism:* no retrieved chunk cleared the 0.60 distance gate (the corpus is professor reviews, not housing), so the system refused **without calling the LLM** — no plausible-sounding answer was generated from training data.
 
 ---
 
@@ -213,9 +235,13 @@ System response (refusal):
 <!-- Describe your query interface: what are the input fields, what does the output look like?
      Then provide a complete sample interaction transcript showing a real exchange. -->
 
-**Input fields:**
+A Gradio web UI ([app.py](app.py)), launched with `python app.py` → http://localhost:7860.
 
-**Output format:**
+**Input fields:** a single **"Your question"** text box (submit with the **Ask** button or Enter). A row of clickable example questions is provided so a first-time viewer knows what to ask.
+
+**Output format:** two read-only text areas — **"Answer"** (the grounded response with inline `[n]` citations) and **"Retrieved from"** (the bulleted list of source documents the answer is attributed to). Out-of-scope questions show the refusal in *Answer* and "(no sources — outside the guide's scope)" in *Retrieved from*.
+
+> **Implementation note:** the recommended `gradio>=6.9.0` could not be used — gradio 6 requires `huggingface-hub>=1.2`, which conflicts with the `transformers`/`sentence-transformers` pin (`huggingface-hub<1.0`). The project uses **gradio 5.50** instead, which satisfies both. `requirements.txt` reflects this.
 
 ---
 
@@ -224,9 +250,16 @@ System response (refusal):
 <!-- Show a complete query → response exchange as it actually appears in your interface.
      Must be text — not a screenshot. -->
 
-> **User:** 
+> **User:** Which professor should I take for CS 220?
 
-> **System:** 
+> **System (Answer):** For CS 220, you should consider taking Professor Nael Abu-Ghazaleh, as some reviewers say he is "one of the best professors for computer science" [4] and "one of my favorite professors" [5], with students praising his fairness, helpfulness, and informative lectures [4], [5].
+>
+> **System (Retrieved from):**
+> • forum_collegeconfidential_cs_major.txt (https://talk.collegeconfidential.com/t/binghamton-computer-science-major/1081373)
+> • rmp_rakin.txt (https://www.ratemyprofessors.com/professor/2905662)
+> • rmp_abughazaleh.txt (https://www.ratemyprofessors.com/professor/152851)
+
+*(This is verbatim system output. It again shows the trade-off: three chunks cleared the relevance gate and are listed under "Retrieved from", but the model only cited the two Abu-Ghazaleh excerpts `[4]` and `[5]` — the forum and Rakin chunks were available as context but not used in the answer.)*
 
 ---
 
