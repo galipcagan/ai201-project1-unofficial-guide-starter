@@ -269,16 +269,20 @@ A Gradio web UI ([app.py](app.py)), launched with `python app.py` → http://loc
      Be honest — a partially accurate or inaccurate result that you explain well is more
      valuable than a suspiciously perfect result. -->
 
+All run via `query.py` against the live system (Groq `llama-3.3-70b-versatile`, k=5, cosine gate 0.60).
+
 | # | Question | Expected answer | System response (summarized) | Retrieval quality | Response accuracy |
 |---|----------|-----------------|------------------------------|-------------------|-------------------|
-| 1 | | | | | |
-| 2 | | | | | |
-| 3 | | | | | |
-| 4 | | | | | |
-| 5 | | | | | |
+| 1 | What do students say about Patrick Madden's lectures and exams? | Clear, recorded lectures; generally well-liked; but some warn exams are hard / he reads slides | Lectures clear, easy to follow, all recorded [1]; one says he "really just reads the slides" [5]; exams "very fair" [1] vs "pretty hard" [5]; "no surprises on tests" [2] | Relevant (all 5 chunks from rmp_madden.txt, dist 0.27–0.39) | **Accurate** |
+| 2 | Is Thomas Bartenstein a good professor to take for CS 220? | Mostly negative: monotone, reads slides, hard exams; only ~40% would take again | "Opinions are mixed... he seems to be an acceptable choice for CS220"; mentions boring lectures but frames him more favorably than reviews support | Partially relevant (1 of 5 chunks was an unrelated Rakin review; harshest review missing) | **Partially accurate** (see Failure Case Analysis) |
+| 3 | Which professor is recommended for CS 220 (Computer Systems / Architecture)? | Nael Abu-Ghazaleh praised — fair, great office hours; recommended over Bartenstein | Recommends Abu-Ghazaleh as "one of the best professors" with fair class and helpful office hours [4][5] | Partially relevant (forum + Rakin chunks ranked above Abu-Ghazaleh; he was ranks 4–5 at dist 0.47–0.49) | **Accurate** |
+| 4 | How highly rated is Ping Yang, and is her class hard? | Highly rated (~4.7/5), relatively low difficulty (~2.4), positive | "4.7/5 based on 17 ratings [2]"; difficulty mixed — "easy grade" [3], 2.0/5 [4] vs 3.0/5 [1][5] | Relevant (all 5 chunks from rmp_pingyang.txt incl. the profile-summary chunk, dist 0.28–0.35) | **Accurate** |
+| 5 | How challenging is the CS major, and what is CS 350 (Operating Systems) like? | Major is genuinely challenging; CS 350 is demanding | Major "considered challenging" but material interesting [4]; for CS 350 only relays a 2011 forum warning to avoid Prof. Foreman [5] | Partially relevant (all 5 chunks from the forum thread; the actual CS 350 reviews in rmp_lewis.txt were not retrieved) | **Partially accurate** |
 
 **Retrieval quality:** Relevant / Partially relevant / Off-target  
 **Response accuracy:** Accurate / Partially accurate / Inaccurate
+
+**Summary:** 3 of 5 fully accurate, 2 partially accurate. Both partial cases trace to retrieval, not generation — the LLM faithfully summarized whatever chunks it received; the limitation was *which* chunks reached it (top-k truncation and semantic noise), analyzed below.
 
 ---
 
@@ -295,13 +299,13 @@ A Gradio web UI ([app.py](app.py)), launched with `python app.py` → http://loc
      "The embedding model treated the professor's nickname as out-of-vocabulary and returned
      results from an unrelated review" is an explanation. -->
 
-**Question that failed:**
+**Question that failed:** *Is Thomas Bartenstein a good professor to take for CS 220?* (Eval Q2)
 
-**What the system returned:**
+**What the system returned:** "Some reviewers say Professor Thomas Bartenstein is 'not that bad' for CS220 … Overall, opinions are mixed, but he seems to be an **acceptable choice** for CS220." This is more favorable than the real consensus — Bartenstein's aggregate is 2.7/5 with only **40% would take again**, and his single most-upvoted review reads "Extremely monotone and boring lectures … His exams are difficult and will tank your grade. **Avoid him.**"
 
-**Root cause (tied to a specific pipeline stage):**
+**Root cause (tied to a specific pipeline stage):** This is a **retrieval-stage** failure, specifically the interaction of top-k truncation with per-review chunking. The five chunks returned were four Bartenstein reviews plus one *unrelated* Adnan Rakin review (distance 0.378), which matched on the generic phrase "one of the best CS professors at Bing." That Rakin chunk consumed one of only five context slots. More importantly, the harshest "Avoid him" review (quality 1.0/5) ranked **outside the top 5** — its phrasing is dissimilar to the neutral query wording "good professor to take," so it scored a higher distance and was dropped — and the `profile_summary` chunk that encodes the decisive quantitative signal (2.7/5, 40% would take again) was also not retrieved. The LLM then did exactly what it should: it faithfully summarized the chunks it was given. But because that sample was skewed toward the milder reviews and excluded both the strongest negative review and the aggregate verdict, the *grounded* answer was still **non-representative** of the full review set. The generation stage was not at fault; the context window it received was unrepresentative.
 
-**What you would change to fix it:**
+**What you would change to fix it:** (1) **Metadata pre-filter** — when a query names a specific professor, filter the collection to that professor (`where={"professor": ...}`) *before* ranking, so off-target chunks like the Rakin review can't occupy slots. (2) **Always include the profile-summary chunk** for a named professor, so the aggregate rating / would-take-again figure is always in context. (3) **Raise k for single-professor queries** (e.g., k=8–10) so the sentiment distribution is captured rather than truncated. Change (1) is the highest-leverage fix and the cheapest to implement.
 
 ---
 
@@ -310,9 +314,9 @@ A Gradio web UI ([app.py](app.py)), launched with `python app.py` → http://loc
 <!-- Reflect on how planning.md shaped your implementation.
      Answer both questions with at least 2–3 sentences each. -->
 
-**One way the spec helped you during implementation:**
+**One way the spec helped you during implementation:** Anticipated Challenge #2 in planning.md ("lost professor/course context when chunking — on Coursicle/RMP a review's text often doesn't repeat the professor's name") forced a concrete design decision *before* any code existed: every chunk would carry `professor` and `course` as metadata and a context prefix. That paid off across two later stages without rework — retrieval results are attributable because the prefix names the professor even when the review doesn't, and grounded generation's source list is built directly from that metadata. Several eval answers (e.g. Q4 citing "Ping Yang … 4.7/5 [2]") only resolve cleanly because the spec made me thread professor identity through the whole pipeline from the start.
 
-**One way your implementation diverged from the spec, and why:**
+**One way your implementation diverged from the spec, and why:** planning.md's Retrieval Approach specified top-k=5 and treated a similarity floor as an *optional* tuning knob. In implementation I promoted it to a **mandatory structural relevance gate** (cosine distance 0.60) that returns the refusal *before the LLM is ever called* when no chunk clears it. I diverged because testing showed prompt-only grounding is not airtight — a confidently-worded out-of-scope question can still coax an answer out of the model. Making refusal structural means the off-campus-housing query physically cannot reach the LLM. A second, involuntary divergence: planning.md/requirements assumed `gradio>=6.9.0`, but gradio 6 requires `huggingface-hub>=1.2`, which conflicts with the `sentence-transformers` pin (`<1.0`); I dropped to gradio 5.50 to keep the embedding model working. Both divergences are now reflected in `requirements.txt`.
 
 ---
 
@@ -327,14 +331,14 @@ A Gradio web UI ([app.py](app.py)), launched with `python app.py` → http://loc
      chunk_text(). It returned a function using a fixed character split. I overrode the
      chunk size from 500 to 200 because my documents are short reviews, not long guides." -->
 
-**Instance 1**
+**Instance 1 — Ingestion & chunking (ingest.py)**
 
-- *What I gave the AI:*
-- *What it produced:*
-- *What I changed or overrode:*
+- *What I gave the AI:* The Chunking Strategy section of planning.md (512-char cap, 50-char overlap, "keep short reviews whole") plus one sample saved review file, and asked it to implement the load → clean → chunk pipeline.
+- *What it produced:* `ingest.py` with `clean_text()` (HTML/entity/boilerplate stripping) and a chunker, initially leaning on a generic fixed-size sliding window for everything.
+- *What I changed or overrode:* I directed it to make the chunker **review-aware** — one review = one atomic chunk, never split if ≤512 chars, with the sliding window reserved only for the long forum posts — because blind windowing would have severed short reviews from their professor/course. I also required a context prefix + `professor`/`course` metadata on every chunk, and caught that em-dashes were printing as `�` on the Windows console (added a stdout reconfigure; verified the stored data was actually correct UTF-8).
 
-**Instance 2**
+**Instance 2 — Grounded generation (query.py)**
 
-- *What I gave the AI:*
-- *What it produced:*
-- *What I changed or overrode:*
+- *What I gave the AI:* The grounding requirement (answer only from retrieved context, refuse otherwise, cite sources) and the Retrieval Approach section, asking it to wire Groq + retrieval together.
+- *What it produced:* A `query.py` that enforced grounding via the system prompt and built a programmatic source list from chunk metadata.
+- *What I changed or overrode:* I added a **structural relevance gate** (refuse before calling the LLM when no chunk clears distance 0.60) rather than trusting the prompt alone, after deciding prompt-only refusal wasn't reliable enough. When the AI-suggested `gradio>=6.9.0` install silently broke the embedding model (huggingface-hub conflict), I directed the downgrade to gradio 5.x. I also caught a fabricated sample transcript in the README and made it re-run the real query so the documented output is verbatim.
