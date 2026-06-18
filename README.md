@@ -112,9 +112,9 @@ Professors to avoid: Foreman and Steflik. Foreman teaches a pass/fail required 2
      Consider: context length limits, multilingual support, accuracy on domain-specific text,
      latency, and local vs. API-hosted. -->
 
-**Model used:**
+**Model used:** `all-MiniLM-L6-v2` via `sentence-transformers` (384-dim sentence embeddings), loaded with `SentenceTransformer("all-MiniLM-L6-v2")` in [retrieval.py](retrieval.py). It runs locally with no API key and no rate limits, embeddings are L2-normalized, and they are stored in a persistent **ChromaDB** collection configured for **cosine** distance. Chosen because the corpus is short English reviews, iteration is fast and free locally, and 384-dim vectors are plenty to separate professors/courses.
 
-**Production tradeoff reflection:**
+**Production tradeoff reflection:** If cost weren't a constraint I'd weigh a larger hosted embedder (e.g. OpenAI `text-embedding-3-large`, Voyage, or Cohere). Tradeoffs: **(1) accuracy on domain text** — MiniLM is general-purpose and, as my retrieval test showed, matches sentiment words ("best", "easy A") more strongly than the abstract concept of "highest aggregate rating"; a stronger model separates these better. **(2) context length** — MiniLM truncates at 256 tokens, which forces splitting the long forum posts; an 8k-token embedder could embed a whole thread as one unit and avoid boundary loss. **(3) latency / local vs API** — MiniLM is instant, free, and keeps student reviews off third-party servers; a hosted model adds per-call cost, network latency, and a privacy consideration. **(4) multilingual** — not needed here (English-only), so paying for it would be wasted. Conclusion: MiniLM is the right fit for this project; I'd only upgrade if eval showed retrieval consistently missing relevant reviews.
 
 ---
 
@@ -124,36 +124,38 @@ Professors to avoid: Foreman and Steflik. Foreman teaches a pass/fail required 2
      For at least 2 of the 3, explain why the returned chunks are relevant to the query.
      Results must be text — not screenshots. -->
 
-**Query 1:**
+Run with `python retrieval.py` (k=5, cosine distance — lower is more similar). Showing top 3 of 5 per query.
+
+**Query 1:** *What do students say about Patrick Madden's lectures and exams?*
 
 Top returned chunks:
--
--
--
+- (dist 0.272, `rmp_madden.txt`) "Professor Madden sets the standard! His lectures are clear, easy to follow, and all recorded for your reference. His tests are very fair…"
+- (dist 0.314, `rmp_madden.txt`) "If you have the option to take a class with him, take it. He grades easily, and there are no surprises on tests and assignments."
+- (dist 0.387, `rmp_madden.txt`) "The exams are pretty hard and you aren't exactly prepared well for them. He is a fun guy, but he really just reads the slides…"
 
-Relevance explanation:
+Relevance explanation: All 5 returned chunks are Madden reviews (correct source), with low distances (0.27–0.39). They directly cover both halves of the query — lecture style ("clear… all recorded", "reads the slides") and exams ("tests are very fair" vs. "exams are pretty hard"). The spread captures the real disagreement among reviewers, which is exactly what a grounded answer should summarize.
 
 ---
 
-**Query 2:**
+**Query 2:** *Is Thomas Bartenstein a good professor to take for CS 220?*
 
 Top returned chunks:
--
--
--
+- (dist 0.344, `rmp_bartenstein.txt`) "If you have to take him he's really not that bad. Lectures can be boring but just listen to what he says. Tests have gotten much easier over the years…"
+- (dist 0.378, `rmp_rakin.txt`) "one of the best CS professors at Bing imo, hes the goat. exams felt hard… but were graded fairly…"  ← off-target
+- (dist 0.382, `rmp_bartenstein.txt`) "He's okay for 220, but isn't as good for this class. The class felt disorganized…"
 
-Relevance explanation:
+Relevance explanation: 4 of 5 results are Bartenstein reviews tagged CS220/CS320 (correct), covering his lectures, pop quizzes, and exams. The exception is rank 2 — an **Adnan Rakin** review (CS436) that matched on the generic phrase "one of the best CS professors" rather than on Bartenstein or CS220. It's a moderate distance (0.378) and a good illustration of the contradictory/loosely-related retrieval risk noted in planning.md: semantic similarity on "good professor" language pulled in the wrong professor. It's mitigated downstream because the chunk's metadata names Rakin, so generation can ignore it.
 
 ---
 
-**Query 3:**
+**Query 3:** *Which CS professor has the highest student ratings and an easy class?*
 
 Top returned chunks:
--
--
--
+- (dist 0.272, `rmp_rakin.txt`) "one of the best CS professors at Bing imo, hes the goat…"
+- (dist 0.322, `rmp_abughazaleh.txt`) "This is one of the best professors for computer science. The class is hard but one of the most fair…"
+- (dist 0.348, `rmp_lewis.txt`) "Breaks down the material and makes it easy to understand… he is the head of the CS department…"
 
-Relevance explanation:
+Relevance explanation: Partially relevant. The query has two intents — *highest rating* (a numeric aggregate) and *easy class* — and retrieval matched the second well (reviews using "best"/"easy") but **missed** the first: the `profile_summary` chunks that actually carry aggregate ratings (e.g. Ping Yang 4.7/5, the genuine highest) were not retrieved, because MiniLM keys on praise words rather than the concept of a numeric rating. Distances are still low (0.27–0.37), so the failure is one of *intent coverage*, not weak matching — a candidate to revisit by boosting profile-summary chunks or splitting the query. (Tracked for the Failure Case Analysis section.)
 
 ---
 
